@@ -12,15 +12,23 @@ void Engine::input()
 		if (Keyboard::isKeyPressed(Keyboard::Escape))
 		{
 			m_Window.close();
-		}
-		if (event.mouseButton.button == sf::Mouse::Left)
+		}if (event.type == sf::Event::MouseButtonReleased)
 		{
-			for (int i = 0; i < 5; i++)
+			if (event.mouseButton.button == sf::Mouse::Left)
 			{
-				int MIN = 25, MAX = 50;
-				int numPoints = MIN + (rand() % (MAX - MIN + 1));
-				Particle p(m_Window, numPoints, { event.mouseButton.x, event.mouseButton.y });
+				for (int i = 0; i < 5; i++)
+				{
+					int MIN = 20, MAX = 40;
+					int numPoints = MIN + (rand() % (MAX - MIN + 1));
+					m_particles.push_back(Particle(m_Window, numPoints, { event.mouseButton.x, event.mouseButton.y }));
+					//cout << "I:" << i << endl;
+
+					
+	
+				}
+				//cout << "left click released" << endl;
 			}
+
 		}
 	}
 }
@@ -38,16 +46,27 @@ void Engine::update(float dtAsSeconds)
 			i = m_particles.erase(i);
 		}
 	}
+	
+
 
 }
 void Engine::draw() 
 {
+	//gameTexture.loadFromFile("graphics/target.png");
+
+	//gameTarget.setTexture(gameTexture);
+	//gameTarget.setPosition(800, 390);
+
+
 	m_Window.clear();
 
+	m_Window.draw(gameTarget);
 	for (auto& particle : m_particles)
 	{
 		m_Window.draw(particle);
 	}
+
+
 
 	m_Window.display();
 }
@@ -59,7 +78,6 @@ Engine::Engine()
 void Engine::run() 
 {
 	Clock clock;
-	float dt;
 	
 	cout << "Starting Particle unit tests..." << endl;
 	Particle p(m_Window, 4, { (int)m_Window.getSize().x / 2, (int)m_Window.getSize().y / 2 });
@@ -68,9 +86,10 @@ void Engine::run()
 
 	while (m_Window.isOpen())
 	{
-		clock.restart();
+		/*clock.restart();
 		Time time1 = clock.getElapsedTime();
-		dt = time1.asSeconds();
+		dt = time1.asSeconds();*/
+		float dt = clock.restart().asSeconds();
 		input();
 		update(dt);
 		draw();

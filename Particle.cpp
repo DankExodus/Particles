@@ -33,10 +33,6 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
 {
 	 VertexArray lines(TriangleFan, m_numPoints + 1);
 	 Vector2f center(target.mapCoordsToPixel(m_centerCoordinate, m_cartesianPlane));
-	 //Vector2i intCenter;
-    
-	 //intCenter = target.mapCoordsToPixel(m_centerCoordinate, m_cartesianPlane);
-	 //center = Vector2f(intCenter.x,intCenter.y);
 	 lines[0].position = center;
 	 lines[0].color = m_color1;
 	 for (int j = 1; j <= m_numPoints; j++)
@@ -44,21 +40,18 @@ Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosit
 		 Vector2f point(m_A(0, j - 1), m_A(1, j - 1));
 		 Vector2f intPoint(target.mapCoordsToPixel(point, m_cartesianPlane));
 		 lines[j].position = intPoint;
-
-		
-         if (j % 3 == 0)
-         {
-             lines[j].color = m_color3;
-         }
-         else 
-         {
-             lines[j].color = m_color2; 
-        }
+		 
+		 if (j % 3 == 0)
+		 {
+		     lines[j].color = m_color3;
+		 }
+		 else 
+		 {
+		     lines[j].color = m_color2; 
+		}
 	 }
-
-
 	 target.draw(lines);
-	
+
 }
 void Particle::update(float dt)
 {
@@ -129,7 +122,6 @@ void Particle::unitTests()
     {
         cout << "Failed." << endl;
     }
-
 
     cout << "Testing Particles..." << endl;
     cout << "Testing Particle mapping to Cartesian origin..." << endl;

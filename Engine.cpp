@@ -150,7 +150,7 @@ void Engine::run()
 		update(dt);
 		draw();	
 
-		if (bounds.getPosition().x >= stoppingPoint) failState = true;
+		if (bounds.left >= stoppingPoint) failState = true;
 		if (!failState && scoreCount != 30)
 		{
 			if (scoreCount < 10) gameTarget.setPosition((turkeyTravel.getElapsedTime().asSeconds() * 1000) - 700, randY);

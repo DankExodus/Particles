@@ -1,6 +1,0 @@
-﻿  Engine.cpp
-C:\Users\danke\source\repos\Particles\Particle.h(8,26): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\danke\source\repos\Particles\Engine.h(24,23): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\danke\source\repos\Particles\Engine.h(24,54): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-C:\Users\danke\source\repos\Particles\Engine.cpp(37,21): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  Particles.vcxproj -> C:\Users\danke\source\repos\Particles\x64\Debug\Particles.exe
